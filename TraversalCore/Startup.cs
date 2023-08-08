@@ -1,10 +1,14 @@
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using BusinessLayer.Container;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramwork;
+using DTOLayer.DTOs.AnnouncementDTOs;
 using EntityLayer.Concrete;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,13 +45,16 @@ namespace TraversalCore
             //Entity Framwork BAÐIMLILIÐINDAN KURTULMAK ÝÇÝN Container klasoründe bulunan Extensions sýnýfýndan türettik
             services.ContainerDependicies();
 
+            //AUTO MAPPER ekleme
+            services.AddAutoMapper(typeof(Startup));
+            services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation();
 
             //PROJE SEVÝYESÝNDE Authorization ÝÞLEMÝ YAPTIK
             services.AddMvc(config =>
             {
-                var policy = new AuthorizationPolicyBuilder()
+                var policy = new AuthorizationPolicyBuilder() 
                     .RequireAuthenticatedUser()
                     .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));

@@ -1,0 +1,27 @@
+﻿using AutoMapper;
+using DTOLayer.DTOs.AnnouncementDTOs;
+using DTOLayer.DTOs.AppUserDTOs;
+using EntityLayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace TraversalCore.Mapping.AutoMapperProfile
+{
+    public class MapProfile : Profile
+    {
+        //VERİ İŞLEME 
+        public MapProfile()
+        {
+            CreateMap<AnnouncementAddDTO, Announcement>();
+            CreateMap<Announcement, AnnouncementAddDTO>();
+
+            CreateMap<AppUserRegisterDTO, AppUser>();
+            CreateMap<AppUser, AppUserRegisterDTO>();
+
+            CreateMap<AppUserLoginDTO, AppUser>();
+            CreateMap<AppUser, AppUserLoginDTO>();
+        }
+    }
+}

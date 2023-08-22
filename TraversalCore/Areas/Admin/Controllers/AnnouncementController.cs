@@ -14,6 +14,7 @@ namespace TraversalCore.Areas.Admin.Controllers
 {
     [AllowAnonymous]
     [Area("Admin")]
+    [Route("/Admin/[controller]/[action]")]
     public class AnnouncementController : Controller
     {
         private readonly IAnnouncementService _announcementService;
@@ -24,7 +25,7 @@ namespace TraversalCore.Areas.Admin.Controllers
             _announcementService = announcementService;
             _mapper = mapper;
         }
-         
+
         public IActionResult Index()
         {
             //mappleme işlemi
@@ -39,10 +40,28 @@ namespace TraversalCore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAnnouncement(Announcement announcement)
+        public IActionResult AddAnnouncement(AnnouncementAddDto model)
         {
-            _announcementService.TAdd(announcement);
-            return View();
+            if (ModelState.IsValid)
+            {
+                _announcementService.TAdd(new Announcement()
+                {
+                    Content = model.Content,
+                    Title = model.Title,
+                    Date = Convert.ToDateTime(DateTime.Now.ToShortDateString())
+                });
+
+                return RedirectToAction("Index", "Announcement");
+            }
+            return View(model);
+        }
+
+        [Route("{id}")]
+        public IActionResult DeleteAnnouncement(int id)
+        {
+            var values = _announcementService.TGetByID(id);
+            _announcementService.TDelete(values);
+            return RedirectToAction("Index", "Announcement");
         }
     }
 }

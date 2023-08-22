@@ -11,17 +11,20 @@ namespace TraversalCore.Mapping.AutoMapperProfile
 {
     public class MapProfile : Profile
     {
-        //VERİ İŞLEME 
+        //VERİ İŞLEME(mappleme)
         public MapProfile()
         {
-            CreateMap<AnnouncementAddDTO, Announcement>();
-            CreateMap<Announcement, AnnouncementAddDTO>();
+            CreateMap<AnnouncementAddDto, Announcement>();
+            CreateMap<Announcement, AnnouncementAddDto>();
 
             CreateMap<AppUserRegisterDTO, AppUser>();
             CreateMap<AppUser, AppUserRegisterDTO>();
 
             CreateMap<AppUserLoginDTO, AppUser>();
             CreateMap<AppUser, AppUserLoginDTO>();
+
+            CreateMap<AnnouncementListDto, Announcement>();
+            CreateMap<Announcement, AnnouncementListDto>();
         }
     }
 }

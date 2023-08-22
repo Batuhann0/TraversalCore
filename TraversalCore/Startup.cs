@@ -47,7 +47,7 @@ namespace TraversalCore
 
             //AUTO MAPPER ekleme
             services.AddAutoMapper(typeof(Startup));
-            services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator>();
+            services.AddTransient<IValidator<AnnouncementAddDto>, AnnouncementValidator>();
 
             services.AddControllersWithViews().AddFluentValidation();
 

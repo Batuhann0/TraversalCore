@@ -65,8 +65,6 @@ namespace TraversalCore.Areas.Admin.Controllers
         #endregion
 
         #region APİ İLE SİLME
-
-        [Route("id")]
         public async Task<IActionResult> DeleteVisitor(int id)
         {
             var client = _httpClientFactory.CreateClient();
@@ -80,7 +78,6 @@ namespace TraversalCore.Areas.Admin.Controllers
         #endregion
 
         #region Api ile Güncelleme
-        [Route("id")]
         [HttpGet]
         public async Task<IActionResult> UpdateVisitor(int id)
         {

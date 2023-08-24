@@ -12,7 +12,6 @@ using TraversalCore.Areas.Admin.Models;
 namespace TraversalCore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("/Admin/[controller]/[action]")]
 
     public class VisitorApiController : Controller
     {

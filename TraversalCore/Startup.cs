@@ -42,6 +42,9 @@ namespace TraversalCore
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>()
                 .AddEntityFrameworkStores<Context>();
 
+
+            services.AddHttpClient();
+
             //Entity Framwork BAÐIMLILIÐINDAN KURTULMAK ÝÇÝN Container klasoründe bulunan Extensions sýnýfýndan türettik
             services.ContainerDependicies();
 

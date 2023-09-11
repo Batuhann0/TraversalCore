@@ -20,21 +20,40 @@
         <th>Detaylar</th>
     </tr>
 
-    @if (Model != null)
-    {
-        @foreach (var item in Model)
-        {
-            count++;
 
-            <tr>
-                <td>@count</td>
-                <td>@item.hotel_name</td>
-                @{ score = item.review_score / 10;}
-                <td>@item.review_score</td>
-                <td>@item.review_score_word</td>
-                <td><a href="#" class="btn btn-outline-dark">Detaylar</a></td>
-            </tr>
-        }
+    @foreach (var item in Model)
+    {
+        count++;
+
+        <tr>
+            <td>@count</td>
+            <td>@item.hotel_name</td>
+            @{ score = double.Parse(item.review_score.ToString()) / 10;}
+            <td>@score</td>
+            @{
+                if (item.review_score_word == "Very Good")
+                {
+                    <td>Çok İyi</td>
+                }
+                if (item.review_score_word == "Good")
+                {
+                    <td>İyi</td>
+                }
+                if (item.review_score_word == "Excellent")
+                {
+                    <td>Harika</td>
+                }
+                if (item.review_score_word == "Pleasant")
+                {
+                    <td>Güzel</td>
+                }
+                if (item.review_score_word == "Wonderful")
+                {
+                    <td>Müthiş</td>
+                }
+            }
+            <td><a href="#" class="btn btn-outline-dark">Detaylar</a></td>
+        </tr>
     }
 
 </table>

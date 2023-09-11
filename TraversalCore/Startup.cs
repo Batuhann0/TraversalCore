@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TraversalCore.CQRS.Handlers.DestinationHandlers;
 using TraversalCore.Models;
 
 namespace TraversalCore
@@ -38,6 +39,9 @@ namespace TraversalCore
         public void ConfigureServices(IServiceCollection services)
         {
             // Veritabaný baðlamý ve kimlik doðrulama yapýlandýrmalarýný ekleyerek, uygulama kullanýcý hesaplarýný yönetebilir ve veritabaný iþlemlerini gerçekleþtirebilir
+
+            services.AddScoped<GetAllDestinationQueryHandler>();
+
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>()
                 .AddEntityFrameworkStores<Context>();
